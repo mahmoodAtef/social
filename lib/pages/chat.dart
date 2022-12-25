@@ -15,28 +15,28 @@ class ChatPage extends StatelessWidget {
     AppCubit.get(context).getUsers();
     return BlocConsumer<AppCubit  , AppStates>(builder: (context, state) {
       return SafeArea(
-         minimum: EdgeInsets.only(top: 10),
+        minimum: EdgeInsets.only(top: 10),
         child: Scaffold(appBar:
         AppBar(title: Text('Chats' ,style: TextStyle(fontWeight: FontWeight.bold ),),),
-        body: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container (
-                height: 40,
-                child: TextField(decoration: InputDecoration
-                  (border: OutlineInputBorder(borderRadius:
-                BorderRadius.all(Radius.circular(10)))
-                , hintText: 'Search..' , suffixIcon: Icon(CustomIcons.search)),),
+          body: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container (
+                  height: 40,
+                  child: TextField(decoration: InputDecoration
+                    (border: OutlineInputBorder(borderRadius:
+                  BorderRadius.all(Radius.circular(10)))
+                      , hintText: 'Search..' , suffixIcon: Icon(CustomIcons.search)),),
+                ),
+              ) ,
+              Expanded(
+                child: ListView.separated(itemBuilder: (context, index) {
+                  return chatBuilder(AppCubit.get(context).users[index], context) ;
+                }, separatorBuilder: (context ,index) => const SizedBox(height: 0,), itemCount: AppCubit.get(context).users.length),
               ),
-            ) ,
-            Expanded(
-              child: ListView.separated(itemBuilder: (context, index) {
-                return chatBuilder(AppCubit.get(context).users[index], context) ;
-              }, separatorBuilder: (context ,index) => const SizedBox(height: 0,), itemCount: AppCubit.get(context).users.length),
-            ),
-          ],
-        ) ,),
+            ],
+          ) ,),
       );
     }, listener: (context ,state){});
   }

@@ -1,14 +1,11 @@
 import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-
 import 'package:intl/intl.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/intl.dart';
-import 'package:lol/screens/home.dart';
 
 import '../cubit/cubit.dart';
 import '../cubit/states.dart';
@@ -21,7 +18,7 @@ TextEditingController BirthdayController = TextEditingController();
 var formKey = GlobalKey<FormState>();
 
 class CompleteData extends StatelessWidget {
-  var uid ;
+  var uid;
 
   CompleteData({required this.uid, Key? key}) : super(key: key);
 
@@ -41,7 +38,7 @@ class CompleteData extends StatelessWidget {
                 child: Form(
                   key: formKey,
                   child: Padding(
-                    padding: const EdgeInsets.all( 8),
+                    padding: const EdgeInsets.all(8),
                     child: Column(
                       children: [
                         SizedBox(
@@ -50,7 +47,8 @@ class CompleteData extends StatelessWidget {
                         Stack(
                           children: [
                             Container(
-                              height: MediaQuery.of(context).size.height / 4 + 40,
+                              height:
+                                  MediaQuery.of(context).size.height / 4 + 40,
                               child: Stack(children: [
                                 Stack(
                                   alignment: AlignmentDirectional.bottomEnd,
@@ -82,8 +80,9 @@ class CompleteData extends StatelessWidget {
                                     FloatingActionButton(
                                         onPressed: () async {
                                           print('LLL');
-                                          imageFile = await AppCubit.get(context)
-                                              .changeCover(context);
+                                          imageFile =
+                                              await AppCubit.get(context)
+                                                  .changeCover(context);
                                           print('l');
                                         },
                                         child: const Icon(Icons.edit)),
@@ -121,7 +120,7 @@ class CompleteData extends StatelessWidget {
                                           .changeProfile(context);
                                       print('l');
                                     },
-                                    child: const Icon (
+                                    child: const Icon(
                                       Icons.edit,
                                       size: 20,
                                     ),
@@ -144,8 +143,8 @@ class CompleteData extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(30),
                                 gapPadding: 5),
                             labelText: 'User Name',
-                            prefixIcon:
-                                const Icon(Icons.drive_file_rename_outline_sharp),
+                            prefixIcon: const Icon(
+                                Icons.drive_file_rename_outline_sharp),
                           ),
                           validator: (value) {
                             if (value!.isEmpty) {
@@ -179,8 +178,8 @@ class CompleteData extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(30),
                                 gapPadding: 5),
                             labelText: 'Bio',
-                            prefixIcon:
-                                const Icon(Icons.drive_file_rename_outline_sharp),
+                            prefixIcon: const Icon(
+                                Icons.drive_file_rename_outline_sharp),
                           ),
                           keyboardType: TextInputType.text,
                           controller: bioController,
@@ -214,7 +213,7 @@ class CompleteData extends StatelessWidget {
                         const SizedBox(
                           height: 20,
                         ),
-                        Container (
+                        Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(30),
                             color: Colors.white,
@@ -225,24 +224,27 @@ class CompleteData extends StatelessWidget {
                             disabledElevation: 10,
                             onPressed: () {
                               if (formKey.currentState!.validate()) {
-                               AppCubit.get(context).uploadCover();
-                               AppCubit.get(context).uploadProfile();
+                                AppCubit.get(context).uploadCover();
+                                AppCubit.get(context).uploadProfile();
                                 AppCubit.get(context)
                                     .createUser(
                                         name: userNameController.text,
                                         Bio: bioController.text,
                                         birthDay: BirthdayController.text,
                                         phone: phoneNumController.text,
-                                        Uid: uid , image: AppCubit.get(context).profileUrl,
-                                    cover: AppCubit.get(context).coverUrl)
+                                        Uid: uid,
+                                        image: AppCubit.get(context).profileUrl,
+                                        cover: AppCubit.get(context).coverUrl)
                                     .then((value) => {
-                                  Navigator.pushAndRemoveUntil(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              HomeScreen(uid: uid,)),
-                                          (route) => false)
-                                })
+                                          Navigator.pushAndRemoveUntil(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      HomeScreen (
+                                                        uid: uid,
+                                                      )),
+                                              (route) => false)
+                                        })
                                     .catchError((error) {
                                   print(error.toString());
                                 });
@@ -255,7 +257,6 @@ class CompleteData extends StatelessWidget {
                             elevation: 10,
                           ),
                         ),
-
                       ],
                     ),
                   ),

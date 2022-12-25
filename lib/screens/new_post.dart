@@ -6,14 +6,12 @@ import 'package:lol/cubit/states.dart';
 import 'package:lol/models/post_model.dart';
 import '../models/user_model.dart';
 
-
 class NewPostScreen extends StatelessWidget {
   UserModel model;
-  NewPostScreen ({required this.model, Key? key}) : super(key: key);
+  NewPostScreen({required this.model, Key? key}) : super(key: key);
   TextEditingController captionController = TextEditingController();
   @override
-  Widget build(BuildContext context)
-  {
+  Widget build(BuildContext context) {
     return BlocConsumer<AppCubit, AppStates>(
         builder: (context, state) {
           return Scaffold(
@@ -88,7 +86,8 @@ class NewPostScreen extends StatelessWidget {
                           child: Container(
                             height: MediaQuery.of(context).size.width,
                             constraints: BoxConstraints(
-                                maxHeight: MediaQuery.of(context).size.width * 1.5,
+                                maxHeight:
+                                    MediaQuery.of(context).size.width * 1.5,
                                 minHeight: 100),
                             decoration: BoxDecoration(color: Colors.white),
                             child: CarouselSlider(
@@ -139,17 +138,15 @@ class NewPostScreen extends StatelessWidget {
                   Container(
                       width: MediaQuery.of(context).size.width / 2,
                       child: MaterialButton(
-                        onPressed: () async
-                        {
-                           PostModel post = PostModel(
-                           caption: captionController.text,
-                           uid: model.Uid,
-                           dateTime: DateTime.now().toString(),
-                           image: model.image,
-                           name: model.name ) ;
-                       await AppCubit.get(context)
-                           .createPost(context: context, post: post);
-
+                        onPressed: () async {
+                          PostModel post = PostModel(
+                              caption: captionController.text,
+                              uid: model.uid,
+                              dateTime: DateTime.now().toString(),
+                              image: model.image,
+                              name: model.name);
+                          await AppCubit.get(context)
+                              .createPost(context: context, post: post);
                         },
                         child: Text('Post'),
                         color: Colors.purple,

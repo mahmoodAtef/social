@@ -118,8 +118,7 @@ class RegisterScreen extends StatelessWidget {
                                         suffixIcon: IconButton(
                                             onPressed: () {
                                               isvisible = !isvisible;
-                                              AppCubit.get(context)
-                                                  .changeVisiblity(isvisible);
+                                              AppCubit.get(context).changeVisibility(isvisible);
                                             },
                                             icon: !isvisible
                                                 ? const Icon(
@@ -155,7 +154,7 @@ class RegisterScreen extends StatelessWidget {
                                           onPressed: () {
                                             isvisible = !isvisible;
                                             AppCubit.get(context)
-                                                .changeVisiblity(isvisible);
+                                                .changeVisibility(isvisible);
                                           },
                                           icon: !isvisible
                                               ? const Icon(
@@ -188,12 +187,14 @@ class RegisterScreen extends StatelessWidget {
                                             true) {
                                           AppCubit.get(context)
                                               .userRegister(
-                                                  emailController.text,
-                                                  passwordController.text,)
+                                                emailController.text,
+                                                passwordController.text,
+                                              )
                                               .then((value) => {
                                                     // ignore: avoid_print
                                                     uid = value.user!.uid,
-                                            print('uid: '+ value.user.uid),
+                                                    print('uid: ' +
+                                                        value.user.uid),
                                                     if (state !=
                                                         AppRegisterErrorState())
                                                       {

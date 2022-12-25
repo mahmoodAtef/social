@@ -7,7 +7,6 @@ import 'package:lol/cubit/states.dart';
 import 'package:lol/network/local/cache_helper.dart';
 import 'package:lol/screens/register.dart';
 
-import 'home.dart';
 
 TextEditingController emailController = TextEditingController();
 TextEditingController passwordController = TextEditingController();
@@ -129,7 +128,7 @@ class LoginScreen extends StatelessWidget {
                                                 '$isvisible');
                                             isvisible = !isvisible;
                                             AppCubit.get(context)
-                                                .changeVisiblity(isvisible);
+                                                .changeVisibility(isvisible);
                                             print(state.toString() +
                                                 '$isvisible');
                                           },
@@ -152,10 +151,11 @@ class LoginScreen extends StatelessWidget {
                                     onPressed: () {
                                       if (formKey.currentState!.validate()) {
                                         AppCubit.get(context)
-                                            .userLogin(emailController.text,
-                                                passwordController.text, context).then((value) {
-                                        })
-                                            ;
+                                            .userLogin(
+                                                emailController.text,
+                                                passwordController.text,
+                                                context)
+                                            .then((value) {});
                                       }
                                     },
                                     child: const Text('Login'),
@@ -176,7 +176,7 @@ class LoginScreen extends StatelessWidget {
                                 const SizedBox(
                                   height: 15,
                                 ),
-                                Row (
+                                Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Container(
@@ -227,7 +227,7 @@ class LoginScreen extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                                Row (
+                                Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(

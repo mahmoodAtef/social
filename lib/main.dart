@@ -1,5 +1,3 @@
-
-
 import 'package:bloc/bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -15,19 +13,19 @@ import 'network/local/cache_helper.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper.init();
- // CacheHelper.removeData(key: 'uid');
+  // CacheHelper.removeData(key: 'uid');
   bool ? islogin = await CacheHelper.getData(key: 'isLogin');
- var _uid =  await CacheHelper.getData(key: 'uid');
- userId = _uid ;
- print(appUSer.name.toString());
- Widget  startScreen ;
- if (_uid != null )
- {
-  startScreen = HomeScreen(uid: _uid,);
- }
- else{
-   startScreen = LoginScreen();
- }
+  var _uid =  await CacheHelper.getData(key: 'uid');
+  userId = _uid ;
+  print(appUSer.name.toString());
+  Widget  startScreen ;
+  if (_uid != null )
+  {
+    startScreen = HomeScreen(uid: _uid,);
+  }
+  else{
+    startScreen = LoginScreen();
+  }
   await Firebase.initializeApp();
   runApp( MyApp( uid : _uid,startScreen: startScreen,));
 }
@@ -37,8 +35,8 @@ class MyApp extends StatelessWidget {
   var uid ;
   MyApp({this.uid, required this.startScreen, Key? key})
       : super(
-          key: key,
-        );
+    key: key,
+  );
 
   @override
   Widget build(BuildContext context) {

@@ -26,35 +26,30 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // AppCubit.get(context).getUserData(uid);
-    // UserModel user = AppCubit.get(context).userModel;
-    return BlocConsumer<AppCubit, AppStates>(
-        builder: (context, state) => Scaffold(
-              bottomNavigationBar: ScrollNavigation(
-                physics: false,
-                identiferStyle: const NavigationIdentiferStyle(
-                  color: Colors.purple,
-                  width: 3,
-                ),
-                bodyStyle: const NavigationBodyStyle(
-                  physics: NeverScrollableScrollPhysics(),
-                  background: Colors.white,
-                  borderRadius:
-                      BorderRadius.vertical(bottom: Radius.circular(20)),
-                ),
-                barStyle: const NavigationBarStyle(
-                  verticalPadding: 13,
-                  activeColor: Colors.purple,
-                  background: Colors.white,
-                  elevation: 1.0,
-                ),
-                pages: AppCubit.get(context).Screens,
-                items: AppCubit.get(context).bottomitems,
-                showIdentifier: true,
-                initialPage: 1,
-              ),
-            ),
-        listener: (context, state) {});
+
+    return Scaffold(
+      bottomNavigationBar: ScrollNavigation(
+        physics: false,
+        identiferStyle: const NavigationIdentiferStyle(
+          color: Colors.purple,
+          width: 3,
+        ),
+        bodyStyle: const NavigationBodyStyle(
+          physics: NeverScrollableScrollPhysics(),
+          background: Colors.white,
+          borderRadius: BorderRadius.vertical(bottom: Radius.circular(20)),
+        ),
+        barStyle: const NavigationBarStyle(
+          verticalPadding: 13,
+          activeColor: Colors.purple,
+          background: Colors.white,
+          elevation: 1.0,
+        ),
+        pages: AppCubit.get(context).Screens,
+        items: AppCubit.get(context).bottomitems,
+        showIdentifier: true,
+        initialPage: 1,
+      ),
+    );
   }
 }
-

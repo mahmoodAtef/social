@@ -96,7 +96,8 @@ Widget PostBuilder(
             padding: const EdgeInsets.all(0),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: TextField(
+              child: TextField
+                (
                 controller: TextEditingController(text: '${post.caption}'),
                 readOnly: true,
                 decoration: const InputDecoration(border: InputBorder.none),

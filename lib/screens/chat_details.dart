@@ -14,9 +14,6 @@ class ChatDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   // AppCubit.get(context).getChat(userModel).then((value) {
-      //print (AppCubit.get(context).messages.length);
-    //});
 
     return Builder(builder: (context) {
 
@@ -82,7 +79,7 @@ class ChatDetailsScreen extends StatelessWidget {
                     message.text = messageController.text;
                     message.dateTime = DateTime.now().toString() ;
                     message.senderId = userId ;
-                    message.receiverId = userModel.Uid;
+                    message.receiverId = userModel.uid;
                     message.image = AppCubit.get(context).messageImageUrl ;
                       await AppCubit.get(context).sendMessage(message);
                     // await AppCubit.get(context).addComment
@@ -128,7 +125,7 @@ class ChatDetailsScreen extends StatelessWidget {
   }
 }
 Widget messageBuilder (MessageModel message , context ){
-return message.senderId == appUSer.Uid ?  Padding(
+return message.senderId == appUSer.uid ?  Padding(
 
   padding: const EdgeInsets.symmetric(horizontal: 20.0),
   child:   Align(
